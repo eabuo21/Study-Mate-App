@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/** @format */
 
-export default function App() {
+import React from "react";
+import tw from "tailwind-rn";
+
+import Home from "./Screens/Home/Home";
+import about from "./Screens/AboutDev/About";
+import Main from "./Screens/Interface/Main";
+import { ToastContainer } from "react-toastify";
+import { NavigationContainer } from "@react-navigation/native-";
+import { createNativeStackNavigator } from "@react-navigation/native/stack";
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <React.Fragment>
+      <NavigationContainer>
+        <Stack.Navigator InitialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen name="About" component={About} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <ToastContainer />
+    </React.Fragment>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
